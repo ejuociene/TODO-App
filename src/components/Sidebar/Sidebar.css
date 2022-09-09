@@ -2,13 +2,13 @@
 	width: 250px;
 	min-height: 100vh;
 	padding: 10px 20px 10px 20px;
-	background-color: #fbfaf8;
+	background-color: var(--card-background);
 	border-top-left-radius: 30px;
 	border-bottom-left-radius: 30px;
-	/* border-right: 1px solid #e7decd; */
 	box-shadow: 8px 1px 22px -21px rgba(0, 0, 0, 1);
 	-webkit-box-shadow: 8px 1px 22px -21px rgba(0, 0, 0, 1);
 	-moz-box-shadow: 8px 1px 22px -21px rgba(0, 0, 0, 1);
+	position: relative;
 }
 
 .logo {
@@ -16,16 +16,16 @@
 	margin: 20px 20px 0 20px;
 	font-family: 'Allerta Stencil', sans-serif;
 	font-size: 30px;
+	color: var(--text-primary);
 }
 
 .link {
-	color: black;
+	color: var(--text-primary);
 	text-decoration: none;
 }
 
 .nav {
 	margin: 100px 20px;
-	height: 100%;
 }
 .nav--list {
 	display: flex;
@@ -33,7 +33,7 @@
 	list-style: none;
 	font-weight: 600;
 	gap: 15px;
-	height: 80%;
+	height: 100%;
 }
 
 .nav--item {
@@ -48,11 +48,12 @@
 .nav--item:hover {
 	cursor: pointer;
 	transform: translateY(-1px);
-	background-color: #efe8db;
+	background-color: var(--hover);
 }
 
 .nav--icon {
 	height: 30px;
+	filter: var(--svg-color);
 }
 
 .nav--sublist {
@@ -75,8 +76,9 @@
 .nav--subitem:hover {
 	cursor: pointer;
 	transform: translateY(-1px);
-	background-color: #efe8db;
+	background-color: var(--hover);
 }
 .last {
-	margin-top: auto;
+	position: absolute;
+	bottom: 30px;
 }

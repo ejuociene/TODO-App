@@ -4,7 +4,7 @@ import MainContext from '../../MainContext';
 
 const Task = (props) => {
 	const {task} = props
-	const { list, setList, setDoneList, doneList, categories } = useContext(MainContext);
+	const { setList, setDoneList, doneList, categories, setFilteredList } = useContext(MainContext);
 	const [ edit, setEdit ] = useState(false);
 	const [ editedTask, setEditedTask ] = useState({
 		id: task.id,
@@ -21,9 +21,12 @@ const Task = (props) => {
 		setList(oldList => oldList.filter(task => {
             return task.id !== id
         }))
+		setFilteredList(oldList => oldList.filter(task => {
+            return task.id !== id
+        }))
 		setDoneList((prevList) => [task, ...prevList ]);
 	}
-        
+    
 	const handleChange = (e) => {
 		setEditedTask((prevData) => {
 			return {
@@ -68,7 +71,7 @@ const Task = (props) => {
 								-Select category-
 							</option>
 							{categories.map((category) => {
-									return <option value={category}>{category}</option>;
+									return <option value={category} key={category}>{category}</option>;
 								})}
 						</select>
 					</div>

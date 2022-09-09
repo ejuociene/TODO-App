@@ -8,11 +8,11 @@ import Settings from './pages/Settings';
 import MainContext from './MainContext';
 
 function App() {
-	const [ refresh, setRefresh ] = useState(false);
+	const [ isDarkTheme, setIsDarkTheme ] = useState(false);
 	const [ list, setList ] = useState(() => JSON.parse(localStorage.getItem('tasks')) || []);
 	const [ doneList, setDoneList ] = useState(() => JSON.parse(localStorage.getItem('doneTasks')) || []);
 	const [ chosenCategory, setChosenCategory ] = useState('');
-	const [ filteredList, setFilteredList ] = useState([]);
+	const [ filteredList, setFilteredList ] = useState(() => JSON.parse(localStorage.getItem('tasks')) || []);
 	const [ categories, setCategories ] = useState(
 		() => JSON.parse(localStorage.getItem('categories')) || [ 'Personal', 'Home', 'Work' ]
 	);
@@ -22,15 +22,10 @@ function App() {
 		},
 		[ categories ]
 	);
-	if (chosenCategory) {
-		const filtered = JSON.parse(localStorage.getItem('tasks'));
-		filtered.filter((task) => {
-			return task.category === chosenCategory;
-		});
-		setFilteredList(filtered);
-	}
-	console.log(filteredList);
+	document.documentElement.setAttribute('data-theme', isDarkTheme ? 'dark' : 'light');
 	const contextValues = {
+		isDarkTheme,
+		setIsDarkTheme,
 		list,
 		setList,
 		doneList,
@@ -42,9 +37,9 @@ function App() {
 		filteredList,
 		setFilteredList
 	};
-
+	console.log(isDarkTheme);
 	return (
-		<div className="App">
+		<div className="App" data-theme={isDarkTheme ? 'dark' : 'light'}>
 			<BrowserRouter>
 				<MainContext.Provider value={contextValues}>
 					<Header />

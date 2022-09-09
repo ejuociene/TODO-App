@@ -1,16 +1,10 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useContext } from 'react';
 import MainContext from '../../MainContext';
 
 const DoneTask = (props) => {
 	const { task } = props;
-	const { list, setList, setDoneList, doneList } = useContext(MainContext);
-	const [ edit, setEdit ] = useState(false);
-	const [ editedTask, setEditedTask ] = useState({
-		id: task.id,
-		taskName: task.taskName,
-		category: task.category
-	});
+	const { setDoneList, doneList } = useContext(MainContext);
 	useEffect(
 		() => {
 			localStorage.setItem('doneTasks', JSON.stringify(doneList));
@@ -26,7 +20,6 @@ const DoneTask = (props) => {
 	};
 	return (
 		<div className="task--card">
-			{/* <div className="task--icon" onClick={(id) => clickDone(task.id)} /> */}
 			<div className="task--info">
 				<h1 className="task--name">{task.taskName}</h1>
 				<p className="task--category">{task.category}</p>

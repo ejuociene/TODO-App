@@ -8,8 +8,10 @@ import MainContext from '../../MainContext';
 import { nanoid } from 'nanoid';
 
 const Header = () => {
-	const { categories, setChosenCategory, chosenCategory, setFilteredList, setList } = useContext(MainContext);
+	const { categories, setChosenCategory, setFilteredList } = useContext(MainContext);
 	const selectCategory = (category) => {
+		setChosenCategory(category);
+		console.log(category);
 		const alltasks = JSON.parse(localStorage.getItem('tasks'));
 		const filtered = alltasks.filter((task) => {
 			return task.category === category;
@@ -18,13 +20,13 @@ const Header = () => {
 	};
 	return (
 		<div className="header">
-			<Link to={'/'} className="link">
+			<Link to={'/'} className="link" onClick={() => setChosenCategory('')}>
 				<div className="logo">.ToDo</div>
 			</Link>
 			<nav className="nav">
 				<ul className="nav--list">
 					My Tasks:
-					<Link to={'/'} className="link">
+					<Link to={'/'} className="link" onClick={() => setChosenCategory('')}>
 						<li className="nav--item">
 							<img src={todo} alt="todo" className="nav--icon" />
 							ToDo List
@@ -33,9 +35,11 @@ const Header = () => {
 					<ul className="nav--sublist">
 						{categories.map((category) => {
 							return (
-								<li className="nav--subitem" key={nanoid()} onClick={() => selectCategory(category)}>
-									{category}
-								</li>
+								<Link to={'/'} key={nanoid()} className="link">
+									<li className="nav--subitem" onClick={() => selectCategory(category)}>
+										{category}
+									</li>
+								</Link>
 							);
 						})}
 					</ul>

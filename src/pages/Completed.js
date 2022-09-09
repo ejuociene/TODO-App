@@ -1,5 +1,5 @@
 import React from 'react';
-import { useState, useContext } from 'react';
+import { useContext } from 'react';
 import DoneTask from '../components/Tasks/DoneTask.js';
 import MainContext from '../MainContext.js';
 

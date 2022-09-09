@@ -5,8 +5,8 @@ import Task from '../components/Tasks/Task.js';
 import MainContext from '../MainContext.js';
 import { nanoid } from 'nanoid';
 
-const Home = () => {
-	const { list, setList, categories, filteredList, chosenCategory } = useContext(MainContext);
+const Category = () => {
+	const { list, filteredList, setList, categories } = useContext(MainContext);
 	const [ addNew, setAddNew ] = useState(false);
 	const [ newTask, setNewTask ] = useState({
 		id: nanoid(),
@@ -34,15 +34,14 @@ const Home = () => {
 			id: nanoid(),
 			category: 'none'
 		});
-		setAddNew((prevStatus => !prevStatus));
+		setAddNew(false);
 	};
-	console.log(newTask);
 	return (
 		<div className="container">
 			<div className="heading">
 				<h1 className="title">ToDo List:</h1>
-				<p className="add" onClick={() => setAddNew((prevStatus => !prevStatus))}>
-					{addNew ? "-" : "+"} New
+				<p className="add" onClick={() => setAddNew(true)}>
+					+ New
 				</p>
 			</div>
 			<div className="task--list">
@@ -59,7 +58,7 @@ const Home = () => {
 							/>
 							<select
 								className="select-category"
-								defaultValue='default'
+								defaultValue={'default'}
 								name="category"
 								onChange={(e) => handleChange(e)}
 							>
@@ -67,7 +66,7 @@ const Home = () => {
 									-Select category-
 								</option>
 								{categories.map((category) => {
-									return <option value={category} key={category}>{category}</option>;
+									return <option value={category}>{category}</option>;
 								})}
 							</select>
 						</div>
@@ -75,24 +74,13 @@ const Home = () => {
 					</form>
 				)}
 
-				{!chosenCategory && (list.length > 0 ? 
-					(<>
-					{list.map((task) => {
-					return <Task task={task} key={task.id} />})}
-					</>)
-					: 
-					 (!addNew && <div className='empty'>No tasks yet. Click  <span className='btn span' onClick={() => setAddNew((prevState) => !prevState)}>+ New</span>  to add a task</div>))}
-				{chosenCategory && (filteredList.length > 0 ? 
-				(<>
-				{filteredList.map((task) => {
-					return <Task task={task} key={task.id} />})}</>)
-					:
-					(!addNew && <div className="empty">No tasks in this category yet</div>))}
-			
-			
+				{list.length > 0 &&
+					list.map((task) => {
+						return <Task task={task} key={task.id} />;
+					})}
 			</div>
 		</div>
 	);
 };
 
-export default Home;
+export default Category;

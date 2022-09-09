@@ -1,11 +1,11 @@
 import React from 'react';
-import { useState, useEffect, useContext } from 'react';
+import { useState, useContext } from 'react';
 import MainContext from '../MainContext.js';
 import { nanoid } from 'nanoid';
 import deleteImg from '../images/delete.svg';
 
 const Home = () => {
-	const { categories, setCategories } = useContext(MainContext);
+	const { isDarkTheme, setIsDarkTheme, categories, setCategories } = useContext(MainContext);
 	const [ editCategories, setEditCategories ] = useState(false);
 	const [ newCategory, setNewCategory ] = useState('');
 	const saveNew = () => {
@@ -64,6 +64,13 @@ const Home = () => {
 						EDIT CATEGORIES
 					</button>
 				)}
+			</div>
+			<div className="settings-switch">
+				<h3 className="sub-title">Switch to {isDarkTheme ? 'Light Mode' : 'Dark Mode'} :</h3>
+				<label className="switch">
+					<input type="checkbox" onChange={() => setIsDarkTheme((prevState) => !prevState)} />
+					<span className="slider round" />
+				</label>
 			</div>
 		</div>
 	);
