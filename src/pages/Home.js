@@ -1,19 +1,17 @@
 import React from 'react';
 import { useContext } from 'react';
 import { useState, useEffect } from 'react';
-import Task from '../components/Task/Task.js';
+import Task from '../components/Tasks/Task.js';
 import MainContext from '../MainContext.js';
 import { nanoid } from 'nanoid';
 
 const Home = () => {
-	const { list, setRefresh, setList } = useContext(MainContext);
-	const [ message, setMessage ] = useState('');
+	const { list, setList } = useContext(MainContext);
 	const [ addNew, setAddNew ] = useState(false);
 	const [ newTask, setNewTask ] = useState({
 		id: nanoid(),
 		taskName: '',
-		category: '',
-		status: 'todo'
+		category: ''
 	});
 	useEffect(
 		() => {
@@ -37,11 +35,8 @@ const Home = () => {
 		});
 		setAddNew(false);
 	};
-
-	console.log(list);
 	return (
 		<div className="container">
-			{/* {message && <div className="message">{message}</div>} */}
 			<div className="heading">
 				<h1 className="title">ToDo List:</h1>
 				<p className="add" onClick={() => setAddNew(true)}>
@@ -81,7 +76,7 @@ const Home = () => {
 			<div>
 				{list.length > 0 &&
 					list.map((task) => {
-						return <Task task={task} key={task.id} setRefresh={setRefresh} setMessage={setMessage} />;
+						return <Task task={task} key={task.id} />;
 					})}
 			</div>
 		</div>

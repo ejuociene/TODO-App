@@ -1,25 +1,31 @@
 import { useState, useEffect } from 'react';
-import axios from 'axios';
+import { useContext } from 'react';
+import MainContext from '../../MainContext';
 
 const Task = (props) => {
-	const { task, setRefresh, setMessage } = props;
+	const {task} = props
+	const { list, setList, setDoneList, doneList } = useContext(MainContext);
 	const [ edit, setEdit ] = useState(false);
-	const [ formData, setFormData ] = useState({
+	const [ editedTask, setEditedTask ] = useState({
+		id: task.id,
 		taskName: task.taskName,
-		category: task.category,
-		status: 'todo'
+		category: task.category
 	});
+	useEffect(
+		() => {
+			localStorage.setItem('doneTasks', JSON.stringify(doneList));
+		},
+		[ doneList ]
+	);
 	const clickDone = (id) => {
-		axios.put(`/api/todos/done/${id}`).then((resp) => {
-			setTimeout(() => {
-				setRefresh((prevStatus) => {
-					return !prevStatus;
-				}, 100);
-			});
-		});
-	};
+		setList(oldList => oldList.filter(task => {
+            return task.id !== id
+        }))
+		setDoneList((prevList) => [task, ...prevList ]);
+	}
+        
 	const handleChange = (e) => {
-		setFormData((prevData) => {
+		setEditedTask((prevData) => {
 			return {
 				...prevData,
 				[e.target.name]: e.target.value
@@ -31,11 +37,6 @@ const Task = (props) => {
 	};
 	const saveTask = (e, id) => {
 		e.preventDefault();
-		axios.put(`/api/todos/${id}`, formData).then((resp) => {
-			setRefresh((prevStatus) => !prevStatus);
-			setEdit(false);
-	
-		});
 	};
 	return (
 		<>
@@ -49,11 +50,11 @@ const Task = (props) => {
 							placeholder="Task name"
 							name="taskName"
 							onChange={(e) => handleChange(e)}
-							value={formData.taskName}
+							value={editedTask.taskName}
 						/>
 						<select
 							className="select-category"
-							defaultValue={formData.category}
+							defaultValue={editedTask.category}
 							name="category"
 							onChange={(e) => handleChange(e)}
 						>
@@ -69,7 +70,7 @@ const Task = (props) => {
 				</form>
 			) : (
 				<div className="task--card">
-					<div className="task--icon" onClick={() => clickDone(task.id)} />
+					<div className="task--icon" onClick={(id) => clickDone(task.id)} />
 					<div className="task--info">
 						<h1 className="task--name">{task.taskName}</h1>
 						<p className="task--category">{task.category}</p>
