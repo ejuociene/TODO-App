@@ -4,7 +4,7 @@ import MainContext from '../../MainContext';
 
 const Task = (props) => {
 	const {task} = props
-	const { list, setList, setDoneList, doneList } = useContext(MainContext);
+	const { list, setList, setDoneList, doneList, categories } = useContext(MainContext);
 	const [ edit, setEdit ] = useState(false);
 	const [ editedTask, setEditedTask ] = useState({
 		id: task.id,
@@ -37,6 +37,12 @@ const Task = (props) => {
 	};
 	const saveTask = (e, id) => {
 		e.preventDefault();
+		setList((prevList) => prevList.map((task) => {
+			if (task.id === id) {
+				return task = editedTask
+			} return task
+		}))
+		setEdit((prevStatus) => !prevStatus);
 	};
 	return (
 		<>
@@ -61,9 +67,9 @@ const Task = (props) => {
 							<option value="default" disabled>
 								-Select category-
 							</option>
-							<option value="Home">Home</option>
-							<option value="Personal">Personal</option>
-							<option value="Work">Work</option>
+							{categories.map((category) => {
+									return <option value={category}>{category}</option>;
+								})}
 						</select>
 					</div>
 					<button className="btn">SAVE</button>
@@ -73,7 +79,7 @@ const Task = (props) => {
 					<div className="task--icon" onClick={(id) => clickDone(task.id)} />
 					<div className="task--info">
 						<h1 className="task--name">{task.taskName}</h1>
-						<p className="task--category">{task.category}</p>
+						<p className="task--category">{task.category !== "none" && task.category}</p>
 					</div>
 					<button className="btn" onClick={() => handleEdit(task.id)}>
 						EDIT
