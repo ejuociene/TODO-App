@@ -6,7 +6,7 @@ import MainContext from '../MainContext.js';
 import { nanoid } from 'nanoid';
 
 const Home = () => {
-	const { list, setList, categories, filteredList, chosenCategory } = useContext(MainContext);
+	const { list, setList, categories, filteredList, chosenCategory, setFilteredList } = useContext(MainContext);
 	const [ addNew, setAddNew ] = useState(false);
 	const [ newTask, setNewTask ] = useState({
 		id: nanoid(),
@@ -34,6 +34,7 @@ const Home = () => {
 			id: nanoid(),
 			category: 'none'
 		});
+		newTask.category === chosenCategory && setFilteredList((prevList) => [newTask, ...prevList])
 		setAddNew((prevStatus => !prevStatus));
 	};
 	console.log(newTask);

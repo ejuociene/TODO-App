@@ -403,3 +403,21 @@ input:checked + .slider:before {
 .slider.round:before {
 	border-radius: 50%;
 }
+
+@media (max-width: 1400px) {
+	.App {
+		width: 80%;
+	}
+}
+
+@media (max-width: 992px) {
+	.App {
+		width: 95%;
+	}
+}
+
+@media (max-width: 768px) {
+	.App {
+		width: 100%;
+	}
+}
