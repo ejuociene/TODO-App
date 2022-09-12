@@ -131,6 +131,8 @@ body {
 }
 
 .logo-link {
+	color: var(--text-primary);
+	text-decoration: none;
 	display: flex;
 	align-items: center;
 }
@@ -516,17 +518,27 @@ input:checked + .slider:before {
 	.header {
 		border-radius: 0;
 		height: 3.5rem;
+		justify-content: space-between;
+	}
+	.logo-link {
+		width: 15%;
 	}
 	.logo {
 		font-size: 1.2rem;
-		width: 4.5rem;
 		margin-left: 0.4rem;
+	}
+	.nav {
+		width: 80%;
+	}
+	.link {
+		width: 30%;
 	}
 	.nav--list {
 		gap: 0.4rem;
+		justify-content: space-between;
 	}
 	.nav--item {
-		width: 7rem;
+		width: 100%;
 		font-size: 0.8rem;
 		padding: 1rem 0.5rem 1.5rem 0.5rem;
 		top: 0.5rem;

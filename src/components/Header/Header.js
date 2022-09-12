@@ -8,7 +8,7 @@ const Header = () => {
 	const [ isActiveTab, setIsActiveTab ] = useState('todo');
 	return (
 		<div className="header">
-			<Link to={'/'} className="link logo-link" onClick={() => setIsActiveTab('todo')}>
+			<Link to={'/'} className="logo-link" onClick={() => setIsActiveTab('todo')}>
 				<div className="logo">.ToDo</div>
 			</Link>
 			<nav className="nav">
