@@ -60,7 +60,7 @@ const Home = () => {
 				{list.length > 0 && <div className='filter-container'>
 					{showFilter && <select className='filter-select' defaultValue="default"  onChange={(e) => selectCategory(e.target.value)}>
 					<option value="default" disabled>
-									- Filter by category -
+									- Category -
 								</option>
 								{categories.map((category) => {
 									return <option value={category} key={category}>{category}</option>

@@ -1,6 +1,5 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import './Header.css';
 import todo from '../../images/todo.svg';
 import Done from '../../images/done.svg';
 import Settings from '../../images/settings.svg';
