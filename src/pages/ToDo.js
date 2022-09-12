@@ -4,10 +4,12 @@ import { useState, useEffect } from 'react';
 import Task from '../components/Tasks/Task.js';
 import MainContext from '../MainContext.js';
 import { nanoid } from 'nanoid';
+import filter from "../images/filter.svg"
 
 const Home = () => {
-	const { list, setList, categories, filteredList, chosenCategory, setFilteredList } = useContext(MainContext);
+	const { list, setList, categories, filteredList, setFilteredList, chosenCategory, setChosenCategory } = useContext(MainContext);
 	const [ addNew, setAddNew ] = useState(false);
+	const [showFilter, setShowFilter] = useState(false)
 	const [ newTask, setNewTask ] = useState({
 		id: nanoid(),
 		taskName: '',
@@ -37,11 +39,37 @@ const Home = () => {
 		newTask.category === chosenCategory && setFilteredList((prevList) => [newTask, ...prevList])
 		setAddNew((prevStatus => !prevStatus));
 	};
-	console.log(newTask);
+	const selectCategory = (value) => {
+		if (value === "all") {
+		setChosenCategory("")
+		return setFilteredList([]); 
+	}
+	else {
+		setChosenCategory(value);
+	const alltasks = JSON.parse(localStorage.getItem('tasks'));
+	const filtered = alltasks.filter((task) => {
+		return task.category === value;
+	});
+	setFilteredList(filtered)}
+	};
+	console.log(filteredList)
 	return (
 		<div className="container">
 			<div className="heading">
 				<h1 className="title">ToDo List:</h1>
+				{list.length > 0 && <div className='filter-container'>
+					{showFilter && <select className='filter-select' defaultValue="default"  onChange={(e) => selectCategory(e.target.value)}>
+					<option value="default" disabled>
+									- Filter by category -
+								</option>
+								{categories.map((category) => {
+									return <option value={category} key={category}>{category}</option>
+								})}
+								<option value="all">Show all</option>
+							</select>}
+						
+
+					<img src={filter} alt="filter" className='filter-icon' onClick={()=> setShowFilter((prevState) => !prevState)}/></div>}
 				<p className="add" onClick={() => setAddNew((prevStatus => !prevStatus))}>
 					{addNew ? "-" : "+"} New
 				</p>
@@ -92,6 +120,7 @@ const Home = () => {
 			
 			
 			</div>
+			{addNew && <p className='small-text'>You can edit your categories in the Settings tab</p>}
 		</div>
 	);
 };

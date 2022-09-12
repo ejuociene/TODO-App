@@ -1,7 +1,7 @@
 import './App.css';
 import { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Header from './components/Sidebar/Sidebar';
+import Header from './components/Header/Header.js';
 import ToDo from './pages/ToDo';
 import Completed from './pages/Completed';
 import Settings from './pages/Settings';
@@ -11,8 +11,8 @@ function App() {
 	const [ isDarkTheme, setIsDarkTheme ] = useState(false);
 	const [ list, setList ] = useState(() => JSON.parse(localStorage.getItem('tasks')) || []);
 	const [ doneList, setDoneList ] = useState(() => JSON.parse(localStorage.getItem('doneTasks')) || []);
-	const [ chosenCategory, setChosenCategory ] = useState('');
 	const [ filteredList, setFilteredList ] = useState(() => JSON.parse(localStorage.getItem('tasks')) || []);
+	const [ chosenCategory, setChosenCategory ] = useState('');
 	const [ categories, setCategories ] = useState(
 		() => JSON.parse(localStorage.getItem('categories')) || [ 'Personal', 'Home', 'Work' ]
 	);
@@ -33,12 +33,11 @@ function App() {
 		setDoneList,
 		categories,
 		setCategories,
-		chosenCategory,
-		setChosenCategory,
 		filteredList,
-		setFilteredList
+		setFilteredList,
+		chosenCategory,
+		setChosenCategory
 	};
-	console.log(isDarkTheme);
 	return (
 		<div className="App" data-theme={isDarkTheme ? 'dark' : 'light'}>
 			<BrowserRouter>
