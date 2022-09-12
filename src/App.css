@@ -521,26 +521,29 @@ input:checked + .slider:before {
 		justify-content: space-between;
 	}
 	.logo-link {
-		width: 15%;
+		width: 20%;
 	}
 	.logo {
 		font-size: 1.2rem;
 		margin-left: 0.4rem;
 	}
 	.nav {
-		width: 80%;
+		width: 75%;
 	}
 	.link {
-		width: 30%;
+		width: 32%;
 	}
 	.nav--list {
-		gap: 0.4rem;
+		gap: 0.1rem;
 		justify-content: space-between;
 	}
 	.nav--item {
+		flex-direction: column;
+		align-items: center;
+		text-align: center;
 		width: 100%;
 		font-size: 0.8rem;
-		padding: 1rem 0.5rem 1.5rem 0.5rem;
+		padding: 1rem 0.7rem 1.5rem 0.7rem;
 		top: 0.5rem;
 		gap: 0.3rem;
 	}
