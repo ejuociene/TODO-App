@@ -22,6 +22,7 @@ function App() {
 		},
 		[ categories ]
 	);
+	useEffect(() => {});
 	document.documentElement.setAttribute('data-theme', isDarkTheme ? 'dark' : 'light');
 	const contextValues = {
 		isDarkTheme,
