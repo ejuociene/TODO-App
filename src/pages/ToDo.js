@@ -82,7 +82,7 @@ const Home = () => {
 					return <Task task={task} key={task.id} />})}
 					</>)
 					: 
-					 (!addNew && <div className='empty'>No tasks yet. Click  <span className='btn span' onClick={() => setAddNew((prevState) => !prevState)}>+ New</span>  to add a task</div>))}
+					 (!addNew && <div className='empty'>No tasks yet. Click  <span className='bold' onClick={() => setAddNew((prevState) => !prevState)}>+ New</span>  to add a task</div>))}
 				{chosenCategory && (filteredList.length > 0 ? 
 				(<>
 				{filteredList.map((task) => {

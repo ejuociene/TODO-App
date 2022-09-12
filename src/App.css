@@ -342,9 +342,10 @@ body {
 	align-items: center;
 }
 
-.span {
-	margin: 0 5px;
+.bold {
+	font-weight: 600;
 }
+
 .switch {
 	position: relative;
 	display: inline-block;
@@ -434,6 +435,7 @@ input:checked + .slider:before {
 		border-bottom-left-radius: 0;
 	}
 	.container {
+		padding: 40px 20px;
 		overflow: auto;
 		position: fixed;
 		right: 0;
@@ -456,8 +458,14 @@ input:checked + .slider:before {
 		height: 35px;
 		width: 35px;
 	}
+	.task--name {
+		font-size: 14px;
+	}
 	.new-task {
 		padding: 10px;
+	}
+	.task--category {
+		font-size: 12px;
 	}
 	.input-name,
 	.select-category {
@@ -477,5 +485,8 @@ input:checked + .slider:before {
 	}
 	.input-category {
 		padding: 10px;
+	}
+	.empty {
+		font-size: 12px;
 	}
 }
