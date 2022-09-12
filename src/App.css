@@ -416,8 +416,66 @@ input:checked + .slider:before {
 	}
 }
 
-@media (max-width: 768px) {
+@media (max-width: 786px) {
 	.App {
 		width: 100%;
+		border-radius: 0;
+	}
+	.sidebar {
+		position: absolute;
+		left: 0;
+		top: 0;
+		z-index: 1;
+		border-top-left-radius: 0;
+		border-bottom-left-radius: 0;
+	}
+	.sidebar-collapsed {
+		border-top-left-radius: 0;
+		border-bottom-left-radius: 0;
+	}
+	.container {
+		overflow: auto;
+		position: fixed;
+		right: 0;
+		width: calc(100% - 100px);
+	}
+	.title {
+		font-size: 24px;
+	}
+	.add {
+		font-size: 12px;
+	}
+	.task--list {
+		margin-top: 20px;
+		gap: 10px;
+	}
+	.task--card {
+		padding: 10px;
+	}
+	.task--icon {
+		height: 35px;
+		width: 35px;
+	}
+	.new-task {
+		padding: 10px;
+	}
+	.input-name,
+	.select-category {
+		font-size: 14px;
+	}
+	.task--info {
+		width: 65%;
+	}
+	.btn {
+		padding: 10px 15px;
+	}
+	.sub-title {
+		font-size: 16px;
+	}
+	.settings-list {
+		gap: 5px;
+	}
+	.input-category {
+		padding: 10px;
 	}
 }

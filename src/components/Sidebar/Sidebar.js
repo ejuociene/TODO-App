@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './Sidebar.css';
 import todo from '../../images/todo.svg';
@@ -6,9 +6,13 @@ import Done from '../../images/done.svg';
 import Settings from '../../images/settings.svg';
 import MainContext from '../../MainContext';
 import { nanoid } from 'nanoid';
+import collapseIcon from '../../images/collapse.svg';
+import expandIcon from '../../images/expand.svg';
 
 const Header = () => {
 	const { categories, setChosenCategory, setFilteredList } = useContext(MainContext);
+	const [ windowWidth, setWindowWidth ] = useState(window.innerWidth);
+	const [ fullSidebar, setFullSidebar ] = useState(windowWidth > '786' ? true : false);
 	const selectCategory = (category) => {
 		setChosenCategory(category);
 		console.log(category);
@@ -18,39 +22,51 @@ const Header = () => {
 		});
 		setFilteredList(filtered);
 	};
+	console.log(windowWidth);
 	return (
-		<div className="header">
+		<div className={fullSidebar ? 'sidebar' : 'sidebar-collapsed'}>
 			<Link to={'/'} className="link" onClick={() => setChosenCategory('')}>
-				<div className="logo">.ToDo</div>
+				<div className="logo-container">
+					{fullSidebar && <div className="logo">.ToDo</div>}
+					<img
+						src={fullSidebar ? collapseIcon : expandIcon}
+						alt="move sidebar"
+						className="sidebar-icon"
+						onClick={() => setFullSidebar((prevState) => !prevState)}
+					/>
+				</div>
 			</Link>
 			<nav className="nav">
 				<ul className="nav--list">
-					My Tasks:
+					{fullSidebar && 'My Tasks'}
 					<Link to={'/'} className="link" onClick={() => setChosenCategory('')}>
-						<li className="nav--item">
+						<li className={fullSidebar ? 'nav--item' : 'nav--item-collapsed'}>
 							<img src={todo} alt="todo" className="nav--icon" />
-							ToDo List
+							{fullSidebar && 'ToDo List'}
 						</li>
 					</Link>
 					<ul className="nav--sublist">
-						{categories.map((category) => {
-							return (
-								<Link to={'/'} key={nanoid()} className="link">
-									<li className="nav--subitem" onClick={() => selectCategory(category)}>
-										{category}
-									</li>
-								</Link>
-							);
-						})}
+						{fullSidebar &&
+							categories.map((category) => {
+								return (
+									<Link to={'/'} key={nanoid()} className="link">
+										<li className="nav--subitem" onClick={() => selectCategory(category)}>
+											{category}
+										</li>
+									</Link>
+								);
+							})}
 					</ul>
 					<Link to={'/completed'} className="link">
-						<li className="nav--item">
-							<img src={Done} alt="done" className="nav--icon" />Completed
+						<li className={fullSidebar ? 'nav--item' : 'nav--item-collapsed'}>
+							<img src={Done} alt="done" className="nav--icon" />
+							{fullSidebar && 'Completed'}
 						</li>
 					</Link>
 					<Link to={'/settings'} className="link last">
-						<li className="nav--item">
-							<img src={Settings} alt="done" className="nav--icon" />Settings
+						<li className={fullSidebar ? 'nav--item' : 'nav--item-collapsed'}>
+							<img src={Settings} alt="done" className="nav--icon" />
+							{fullSidebar && 'Settings'}
 						</li>
 					</Link>
 				</ul>
