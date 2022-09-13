@@ -11,10 +11,13 @@ const Home = () => {
 				<h1 className="title">Completed Tasks:</h1>
 			</div>
 			<div className="task--list">
-				{doneList.length > 0 &&
+				{doneList.length > 0 ? (
 					doneList.map((task) => {
 						return <DoneTask task={task} key={task.id} />;
-					})}
+					})
+				) : (
+					<div className="empty">No completed tasks</div>
+				)}
 			</div>
 		</main>
 	);
