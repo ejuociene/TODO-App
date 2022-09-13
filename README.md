@@ -1,7 +1,5 @@
 # TODO App
 
-## Overview and Features
-
 Sample ToDo app with features:
 - Add new task
 - Edit tasks
@@ -16,7 +14,7 @@ Sample ToDo app with features:
 - React.js
 - Semantic HTML5 markup
 - Flexbox
-- Saving data on Local Storage
-<!-- - Mobile-first workflow -->
+- Using and storing data in Local Storage
+- Mobile-first workflow
 
 Check it out: https://todo-app-localstorage-sample.netlify.app/
