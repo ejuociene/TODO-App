@@ -7,7 +7,7 @@ Sample ToDo app with features:
 - Mark tasks as Done
 - View and remove Completed tasks
 - Edit categories 
-- Toggle Light and Dark Mode
+- Toggle Light and Dark Mode. Default Mode matches viewer's set device preferences.
 - Responsive layout
 
 ### Built with
