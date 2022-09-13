@@ -8,7 +8,8 @@ import Settings from './pages/Settings';
 import MainContext from './MainContext';
 
 function App() {
-	const [ isDarkTheme, setIsDarkTheme ] = useState(false);
+	const defaultDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+	const [ isDarkTheme, setIsDarkTheme ] = useState(defaultDark ? true : false);
 	const [ list, setList ] = useState(() => JSON.parse(localStorage.getItem('tasks')) || []);
 	const [ doneList, setDoneList ] = useState(() => JSON.parse(localStorage.getItem('doneTasks')) || []);
 	const [ filteredList, setFilteredList ] = useState(() => JSON.parse(localStorage.getItem('tasks')) || []);
