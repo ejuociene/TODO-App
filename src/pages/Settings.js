@@ -21,7 +21,7 @@ const Home = () => {
 		);
 	};
 	return (
-		<div className="container">
+		<main className="container">
 			<div className="heading">
 				<h1 className="title">Settings:</h1>
 			</div>
@@ -72,7 +72,7 @@ const Home = () => {
 					<span className="slider round" />
 				</label>
 			</div>
-		</div>
+		</main>
 	);
 };
 

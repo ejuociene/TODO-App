@@ -54,9 +54,10 @@ const Home = () => {
 	};
 	console.log(filteredList)
 	return (
-		<div className="container">
+		<main className="container">
 			<div className="heading">
 				<h1 className="title">ToDo List:</h1>
+				<div className='heading-tools'>
 				{list.length > 0 && <div className='filter-container'>
 					{showFilter && <select className='filter-select' defaultValue="default"  onChange={(e) => selectCategory(e.target.value)}>
 					<option value="default" disabled>
@@ -67,12 +68,14 @@ const Home = () => {
 								})}
 								<option value="all">Show all</option>
 							</select>}
-						
-
-					<img src={filter} alt="filter" className='filter-icon' onClick={()=> setShowFilter((prevState) => !prevState)}/></div>}
+						<div className='filter-icon-container'>
+							<img src={filter} alt="filter" className='filter-icon' onClick={()=> setShowFilter((prevState) => !prevState)}/>
+						</div>
+					</div>}
 				<p className="add" onClick={() => setAddNew((prevStatus => !prevStatus))}>
 					{addNew ? "-" : "+"} New
 				</p>
+				</div>
 			</div>
 			<div className="task--list">
 				{addNew && (
@@ -121,7 +124,7 @@ const Home = () => {
 			
 			</div>
 			{addNew && <p className='small-text'>You can edit your categories in the Settings tab</p>}
-		</div>
+		</main>
 	);
 };
 

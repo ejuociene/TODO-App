@@ -6,7 +6,7 @@ import MainContext from '../MainContext.js';
 const Home = () => {
 	const { doneList } = useContext(MainContext);
 	return (
-		<div className="container">
+		<main className="container">
 			<div className="heading">
 				<h1 className="title">Completed Tasks:</h1>
 			</div>
@@ -16,7 +16,7 @@ const Home = () => {
 						return <DoneTask task={task} key={task.id} />;
 					})}
 			</div>
-		</div>
+		</main>
 	);
 };
 

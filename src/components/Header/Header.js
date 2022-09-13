@@ -7,25 +7,27 @@ import Settings from '../../images/settings.svg';
 const Header = () => {
 	const [ isActiveTab, setIsActiveTab ] = useState('todo');
 	return (
-		<div className="header">
-			<Link to={'/'} className="logo-link" onClick={() => setIsActiveTab('todo')}>
-				<div className="logo">.ToDo</div>
-			</Link>
+		<header className="header">
+			<div className="logo" onClick={() => setIsActiveTab('todo')}>
+				<Link to={'/'} className="logo-link">
+					.ToDo
+				</Link>
+			</div>
 			<nav className="nav">
 				<ul className="nav--list">
-					<Link to={'/'} className="link" onClick={() => setIsActiveTab('todo')}>
+					<Link to={'/'} className="link nav--link" onClick={() => setIsActiveTab('todo')}>
 						<li className={isActiveTab === 'todo' ? 'nav--item active' : 'nav--item'}>
 							<img src={todo} alt="todo" className="nav--icon" />
-							ToDo list
+							ToDos
 						</li>
 					</Link>
-					<Link to={'/completed'} className="link" onClick={() => setIsActiveTab('completed')}>
+					<Link to={'/completed'} className="link nav--link" onClick={() => setIsActiveTab('completed')}>
 						<li className={isActiveTab === 'completed' ? 'nav--item active' : 'nav--item'}>
 							<img src={Done} alt="done" className="nav--icon" />
 							Completed
 						</li>
 					</Link>
-					<Link to={'/settings'} className="link" onClick={() => setIsActiveTab('settings')}>
+					<Link to={'/settings'} className="link nav--link" onClick={() => setIsActiveTab('settings')}>
 						<li className={isActiveTab === 'settings' ? 'nav--item active' : 'nav--item'}>
 							<img src={Settings} alt="done" className="nav--icon" />
 							Settings
@@ -33,7 +35,7 @@ const Header = () => {
 					</Link>
 				</ul>
 			</nav>
-		</div>
+		</header>
 	);
 };
 
