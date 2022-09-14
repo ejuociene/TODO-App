@@ -12,9 +12,9 @@ Sample ToDo app with features:
 
 ### Built with
 - React.js (incl. React hooks)
+- Using and storing data in Local Storage
 - Semantic HTML5 markup
 - Flexbox
-- Using and storing data in Local Storage
 - Mobile-first workflow
 
 Check it out: https://todo-app-localstorage-sample.netlify.app/
