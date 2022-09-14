@@ -11,7 +11,7 @@ Sample ToDo app with features:
 - Responsive layout
 
 ### Built with
-- React.js, React hooks
+- React.js (incl. React hooks)
 - Semantic HTML5 markup
 - Flexbox
 - Using and storing data in Local Storage
